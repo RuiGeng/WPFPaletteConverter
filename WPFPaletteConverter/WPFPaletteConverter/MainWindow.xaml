@@ -4,9 +4,38 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFPaletteConverter"
+        xmlns:cv="clr-namespace:WPFPaletteConverter.Converter"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+
+    <Window.Resources>
+        <cv:PaletteConverter x:Key="LabelBrushes">
+            <cv:PalleteItem>
+                <SolidColorBrush Color="Green"/>
+            </cv:PalleteItem>
+            <cv:PalleteItem Id="Disabled">
+                <SolidColorBrush Color="Gray"/>
+            </cv:PalleteItem>
+            <cv:PalleteItem Id="Active">
+                <SolidColorBrush Color="Cyan"/>
+            </cv:PalleteItem>
+        </cv:PaletteConverter>
+    </Window.Resources>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <TextBox Margin="10" Grid.Row="0" Grid.Column="0" Name="TextBoxLabel1" Text=""></TextBox>
+        <Label Margin="10" Grid.Row="0" Grid.Column="1" Content="Lable1" Background="{Binding Path=Text, ElementName=TextBoxLabel1, Converter={StaticResource LabelBrushes}}"></Label>
+        <TextBox Margin="10" Grid.Row="1" Grid.Column="0" Name="TextBoxLabel2" Text="Disabled"></TextBox>
+        <Label Margin="10" Grid.Row="1" Grid.Column="1" Content="Lable1" Background="{Binding Path=Text, ElementName=TextBoxLabel2, Converter={StaticResource LabelBrushes}}"></Label>
+        <TextBox Margin="10" Grid.Row="2" Grid.Column="0" Name="TextBoxLabel3" Text="Active"></TextBox>
+        <Label Margin="10" Grid.Row="2" Grid.Column="1" Content="Lable1" Background="{Binding Path=Text, ElementName=TextBoxLabel3, Converter={StaticResource LabelBrushes}}"></Label>
     </Grid>
 </Window>
